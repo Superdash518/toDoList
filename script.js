@@ -30,9 +30,17 @@ document.getElementById("tarefa").addEventListener('keypress',function(e){
 
 document.getElementById("inserir").addEventListener("click",inserirElemento)
 
+//regEx para verificar se o campo está vazio ou não;
+const myReg = "^\\s*$";
+
 function inserirElemento(){
     let lista = document.getElementById("lista");
     let tarefa = document.getElementById("tarefa");
+
+    if(tarefa.value.match(myReg)){
+        alert("Insira uma tarefa");
+        return;
+    }
 
     //cria a checkbox
     var checkbox = document.createElement("input");
