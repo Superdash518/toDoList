@@ -22,7 +22,15 @@ function carregarTarefas(){
     });
 }
 
-document.getElementById("inserir").addEventListener("click",function(){
+document.getElementById("tarefa").addEventListener('keypress',function(e){
+    if (e.key === 'Enter') {
+        inserirElemento();
+      }
+});
+
+document.getElementById("inserir").addEventListener("click",inserirElemento)
+
+function inserirElemento(){
     let lista = document.getElementById("lista");
     let tarefa = document.getElementById("tarefa");
 
@@ -44,7 +52,9 @@ document.getElementById("inserir").addEventListener("click",function(){
 
     //Persistindo dados com o localStorage
     localStorage.setItem("Tarefas",JSON.stringify(arrayTarefas));
-})
+};
+
+
 
 document.getElementById("remover").addEventListener("click",function(){
 
