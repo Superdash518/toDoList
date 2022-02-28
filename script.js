@@ -23,5 +23,44 @@ document.getElementById("remover").addEventListener("click",function(){
             labels[index].remove();
         }
     });
+    reconstruirLista()
 })
+
+function reconstruirLista(){
+    let checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+    let labels = document.querySelectorAll("label");
+
+    let tarefa = document.getElementById("tarefa");
+
+    var lista = document.getElementById("lista");
+
+    while (lista.firstChild) { //Enquanto a lista tiver filhos
+        lista.removeChild(lista.firstChild); //os filhos são removidos
+    }
+
+    for (let index = 0; index < checkboxes.length; index++) {     
+        
+            var label = document.createElement("label");
+            label.appendChild(document.createTextNode(labels[index].textContent))
+
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            lista.appendChild(checkbox);
+            lista.appendChild(label);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
