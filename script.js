@@ -11,3 +11,17 @@ document.getElementById("botao").addEventListener("click",function(){
     lista.appendChild(checkbox);
     lista.appendChild(label);
 })
+
+document.getElementById("remover").addEventListener("click",function(){
+
+    let checkboxes = document.querySelectorAll("input[type='checkbox']");
+    let labels = document.querySelectorAll("label");
+    
+    checkboxes.forEach((element,index) => {
+        if(element.checked){
+            element.remove()
+            labels[index].remove();
+        }
+    });
+})
+
