@@ -15,9 +15,9 @@ function carregarTarefas(){
     checkbox.type = "checkbox";
 
     var label = document.createElement("label");
-    label.appendChild(document.createTextNode(element));
 
-    lista.appendChild(checkbox);
+    label.appendChild(checkbox)
+    label.appendChild(document.createTextNode(element));
     lista.appendChild(label);
     });
 }
@@ -48,9 +48,9 @@ function inserirElemento(){
 
     //cria uma label baseada no que foi escrito no input "tarefa"
     var label = document.createElement("label");
-    label.appendChild(document.createTextNode(tarefa.value))
 
-    lista.appendChild(checkbox);
+    label.appendChild(checkbox)
+    label.appendChild(document.createTextNode(tarefa.value))
     lista.appendChild(label);
 
     arrayTarefas.push(tarefa.value);
