@@ -1,34 +1,36 @@
-//localStorage.removeItem("Tarefas");
+//Caso exista a chave "Tarefas" salva, o valor de "arrayTarefas" será o valor da chave, caso não exista, o valor será um array vazio.
 let arrayTarefas = localStorage.getItem("Tarefas") ? JSON.parse(localStorage.getItem("Tarefas")) : [];
 
+//Verificando se a chave "Tarefas" existe
 if(localStorage.getItem("Tarefas")){
-    carregarTarefas()
+    carregarTarefas();
 }
+
+//Construindo a lista baseado nas tarefas salvas
 function carregarTarefas(){
-    var lista = document.getElementById("lista");
-    arrayTarefas.forEach(element =>{
+    let lista = document.getElementById("lista");
+    arrayTarefas.forEach(element =>{ //Nesse contexto, o "element" é o texto contido no array
         
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
     var label = document.createElement("label");
-    label.appendChild(document.createTextNode(element))
+    label.appendChild(document.createTextNode(element));
 
-        lista.appendChild(checkbox);
-        lista.appendChild(label);
-
-    });/*
-    arrayTarefas.forEach(element => {
-        lista.innerHTML+= `<input type="checkbox"> ${element} <br><br>`
-    });*/
+    lista.appendChild(checkbox);
+    lista.appendChild(label);
+    });
 }
 
-document.getElementById("botao").addEventListener("click",function(){
-    var lista = document.getElementById("lista");
+document.getElementById("inserir").addEventListener("click",function(){
+    let lista = document.getElementById("lista");
     let tarefa = document.getElementById("tarefa");
+
+    //cria a checkbox
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
 
+    //cria uma label baseada no que foi escrito no input "tarefa"
     var label = document.createElement("label");
     label.appendChild(document.createTextNode(tarefa.value))
 
@@ -36,13 +38,12 @@ document.getElementById("botao").addEventListener("click",function(){
     lista.appendChild(label);
 
     arrayTarefas.push(tarefa.value);
-    console.log(arrayTarefas);
 
     tarefa.value = "";
     tarefa.focus();
 
+    //Persistindo dados com o localStorage
     localStorage.setItem("Tarefas",JSON.stringify(arrayTarefas));
-
 })
 
 document.getElementById("remover").addEventListener("click",function(){
@@ -52,12 +53,15 @@ document.getElementById("remover").addEventListener("click",function(){
     
     var removeValFromIndex = [];
 
+    //Insere o índice de todos os elementos a serem removidos na variável "removeValFromIndex"
     for (let index = 0; index < checkboxes.length; index++) {
         if(checkboxes[index].checked){
             removeValFromIndex.push(index);
         }
     }
     
+    //Remove os elementos de "arrayTarefas" e da página
+    //removeValFromIndex é invertido para que não haja problemas com o índice 
     for (let i of removeValFromIndex.reverse()) {
         arrayTarefas.splice(i,1);
         checkboxes[i].remove()
